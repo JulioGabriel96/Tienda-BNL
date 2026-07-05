@@ -1,0 +1,50 @@
+<?php
+
+return [
+    'accepted' => 'El campo :attribute debe ser aceptado.',
+    'active_url' => 'El campo :attribute no es una URL valida.',
+    'after' => 'El campo :attribute debe ser una fecha posterior a :date.',
+    'alpha' => 'El campo :attribute solo debe contener letras.',
+    'alpha_dash' => 'El campo :attribute solo debe contener letras, numeros, guiones y guiones bajos.',
+    'alpha_num' => 'El campo :attribute solo debe contener letras y numeros.',
+    'array' => 'El campo :attribute debe ser un conjunto.',
+    'before' => 'El campo :attribute debe ser una fecha anterior a :date.',
+    'between' => [
+        'numeric' => 'El campo :attribute debe estar entre :min y :max.',
+        'file' => 'El campo :attribute debe pesar entre :min y :max kilobytes.',
+        'string' => 'El campo :attribute debe tener entre :min y :max caracteres.',
+        'array' => 'El campo :attribute debe tener entre :min y :max elementos.',
+    ],
+    'boolean' => 'El campo :attribute debe ser verdadero o falso.',
+    'confirmed' => 'La confirmacion de :attribute no coincide.',
+    'date' => 'El campo :attribute no es una fecha valida.',
+    'email' => 'El campo :attribute debe ser un correo electronico valido.',
+    'exists' => 'El valor seleccionado en :attribute no es valido.',
+    'file' => 'El campo :attribute debe ser un archivo.',
+    'image' => 'El campo :attribute debe ser una imagen.',
+    'in' => 'El valor seleccionado en :attribute no es valido.',
+    'integer' => 'El campo :attribute debe ser un numero entero.',
+    'max' => [
+        'numeric' => 'El campo :attribute no debe ser mayor que :max.',
+        'file' => 'El campo :attribute no debe pesar mas de :max kilobytes.',
+        'string' => 'El campo :attribute no debe tener mas de :max caracteres.',
+        'array' => 'El campo :attribute no debe tener mas de :max elementos.',
+    ],
+    'min' => [
+        'numeric' => 'El campo :attribute debe ser al menos :min.',
+        'file' => 'El campo :attribute debe pesar al menos :min kilobytes.',
+        'string' => 'El campo :attribute debe tener al menos :min caracteres.',
+        'array' => 'El campo :attribute debe tener al menos :min elementos.',
+    ],
+    'nullable' => 'El campo :attribute puede quedar vacio.',
+    'numeric' => 'El campo :attribute debe ser un numero.',
+    'required' => 'El campo :attribute es obligatorio.',
+    'string' => 'El campo :attribute debe ser texto.',
+    'unique' => 'El valor de :attribute ya se encuentra registrado.',
+
+    'attributes' => [
+        'nombre' => 'nombre',
+        'descripcion' => 'descripcion',
+        'estado' => 'estado',
+    ],
+];

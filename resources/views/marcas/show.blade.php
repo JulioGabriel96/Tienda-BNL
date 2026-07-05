@@ -2,7 +2,7 @@
 
 @section('title', 'Ver Marca: ' . $marca->nombre)
 
-@section('content')
+@section('app_content')
 <div class="page-header">
     <div class="d-flex justify-content-between align-items-center">
         <div>
@@ -126,3 +126,4 @@
     }
 </style>
 @endsection
+

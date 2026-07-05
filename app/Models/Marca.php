@@ -9,6 +9,8 @@ class Marca extends Model
 {
     use HasFactory;
 
+    protected $table = 'marcas';
+
     protected $fillable = [
         'nombre',
         'descripcion',
@@ -18,4 +20,23 @@ class Marca extends Model
     protected $casts = [
         'estado' => 'integer',
     ];
+
+    public function productos()
+    {
+        return $this->hasMany(Producto::class);
+    }
+
+    public function scopeBuscar($query, $filtros)
+    {
+        if (! empty($filtros['nombre'])) {
+            $query->where('nombre', 'like', '%'.$filtros['nombre'].'%');
+        }
+
+        if (isset($filtros['estado']) && $filtros['estado'] !== '') {
+            $query->where('estado', $filtros['estado']);
+        }
+
+        return $query;
+
+    }
 }

@@ -2,13 +2,10 @@
 
 @section('title', 'Editar Marca: ' . $marca->nombre)
 
-@section('content')
-<div class="page-header">
-    <h1><i class="bi bi-pencil-square"></i> Editar Marca</h1>
-    <p>Actualiza la información de <strong>{{ $marca->nombre }}</strong></p>
-</div>
+@section('app_content')
 
-<div class="row justify-content-center">
+
+<div class="row justify-content-center pt-3">
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
@@ -52,7 +49,7 @@
                                   placeholder="Describe brevemente la marca, sus características, historia, etc..."
                                   style="resize: vertical;">{{ old('descripcion', $marca->descripcion) }}</textarea>
                         <small class="text-muted d-block mt-2">
-                            <i class="bi bi-info-circle"></i> Máximo 500 caracteres (opcional)
+                            <i class="bi bi-info-circle"></i> Máximo 255 caracteres (opcional)
                         </small>
                         @error('descripcion')
                             <div class="invalid-feedback d-block">
@@ -62,24 +59,21 @@
                     </div>
 
                     <!-- Estado -->
-                    <div class="mb-4">
-                        <label for="estado" class="form-label">
-                            <i class="bi bi-circle-fill"></i> Estado
-                        </label>
-                        <select class="form-select form-select-lg @error('estado') is-invalid @enderror" 
+                    <div class="form-group">
+                        <label for="estado">Estado <span class="text-danger">*</span></label>
+                        <select class="form-control @error('estado') is-invalid @enderror" 
                                 id="estado" 
-                                name="estado">
+                                name="estado"
+                                required>
                             <option value="1" {{ old('estado', $marca->estado) == 1 ? 'selected' : '' }}>
-                                <i class="bi bi-check-circle"></i> Activa
+                                Activa
                             </option>
                             <option value="0" {{ old('estado', $marca->estado) == 0 ? 'selected' : '' }}>
-                                <i class="bi bi-x-circle"></i> Inactiva
+                                Inactiva
                             </option>
                         </select>
                         @error('estado')
-                            <div class="invalid-feedback d-block">
-                                <i class="bi bi-exclamation-circle"></i> {{ $message }}
-                            </div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 

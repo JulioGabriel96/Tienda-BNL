@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMarcaRequest;
+use App\Http\Requests\UpdateMarcaRequest;
 use App\Models\Marca;
+use App\Services\Marca\MarcaService;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
@@ -10,15 +13,20 @@ class MarcaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $marcas = Marca::latest()->paginate(10);
+
+        // dd($filtros->all());
+        $filtros = $request->only(['nombre', 'estado']);
+        $marcas = Marca::buscar($filtros)->latest()
+            ->paginate(5)->withQueryString();
+
         return view('marcas.index', compact('marcas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    /*
+     * muestra el formulario para crear una nueva marca
+    */
     public function create()
     {
         return view('marcas.create');
@@ -27,14 +35,9 @@ class MarcaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMarcaRequest $request)
     {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255|unique:marcas',
-            'descripcion' => 'nullable|string',
-            'estado' => 'nullable|integer|in:0,1',
-        ]);
-
+        $validated = $request->validated();
         $validated['estado'] = $validated['estado'] ?? 1;
 
         Marca::create($validated);
@@ -43,7 +46,7 @@ class MarcaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * mostrar el recurso especificado.
      */
     public function show(Marca $marca)
     {
@@ -51,7 +54,7 @@ class MarcaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * mostrarmos el formulario para editar el recurso especificado.
      */
     public function edit(Marca $marca)
     {
@@ -59,16 +62,11 @@ class MarcaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * modificar el recurso especificado en almacenamiento.
      */
-    public function update(Request $request, Marca $marca)
+    public function update(UpdateMarcaRequest $request, Marca $marca)
     {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255|unique:marcas,nombre,' . $marca->id,
-            'descripcion' => 'nullable|string',
-            'estado' => 'nullable|integer|in:0,1',
-        ]);
-
+        $validated = $request->validated();
         $validated['estado'] = $validated['estado'] ?? 1;
 
         $marca->update($validated);
@@ -79,9 +77,18 @@ class MarcaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Marca $marca)
+    public function destroy(Marca $marca, MarcaService $marcaService)
     {
-        $marca->delete();
-        return redirect()->route('marcas.index')->with('success', 'Marca eliminada exitosamente.');
+        $permitirEliminar = $marcaService->eliminarMarca($marca);
+
+        if (! $permitirEliminar) {
+            $mensaje = 'No se puede eliminar la marca porque está asociada a uno o más productos.';
+            $tipo = 'error';
+        } else {
+            $mensaje = 'Marca eliminada exitosamente.';
+            $tipo = 'success';
+        }
+
+        return redirect()->route('marcas.index')->with($tipo, $mensaje);
     }
 }

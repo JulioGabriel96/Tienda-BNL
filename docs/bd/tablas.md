@@ -4,25 +4,28 @@
  que se comercializa */
 
 create table marcas (
- id int primary key auto_increment,
- descripcion varchar(255) not null,
+ id int primary key bigserial,
+ nombre varchar(255) not null,
+ descripcion varchar(255) null,
  estado boolean not null default true
 );
 
 /* Se registran las categorias en donde se almacena la información de las categorias que se 
 comercializan */
 
-create table categorias (
- id int primary key auto_increment,
- descripcion varchar(255) not null,
+create table categorias ( 
+ id int primary key bigserial, 
+ nombre varchar (255) not null
+ descripcion varchar(255),
  estado boolean not null default true
 );
-
+ 
 /* En esta tabla se va almacenar información de las subcategorias que se asocia a cada categoria. */
 
 create table sub_categorias(
- id int primary key auto_increment,
- descripcion varchar(255) not null,
+ id int primary key bigserial,
+ nombre varchar(255) not null
+ descripcion varchar(255),
  categoria_id int not null,
  estado boolean not null default true,
  foreign key (categoria_id) references categorias(id)
@@ -32,34 +35,45 @@ create table sub_categorias(
 en el local BNL motos */
 
 create table productos (
- id int primary key auto_increment,
- descripcion varchar(255) not null,
- precio_costo decimal(10,2) not null,
- precio_venta decimal(10,2) not null,
- stock_actual int not null,
- stock_minimo int not null,
+ id bigserial primary key,
+ codigo varchar(255) not null unique,
+ codigo_barra varchar(255) unique,
+ nombre varchar(255) not null,
+ descripcion text,
+ precio_costo decimal(12,2) not null,
+ porcentaje_ganancia decimal (5,2) default 0.00,
+ precio_venta decimal(12,2) not null,
+ stock_actual int not null default 0,
+ stock_minimo int not null default 0,
+estado boolean not null default true,
  marca_id int not null,
  subcategoria_id int not null,
  foreign key(marca_id) references marcas(id),
- foreign key(subcategoria_id) references sub_categorias(id),
- estado boolean not null default true
+ foreign key(subcategoria_id) references sub_categorias(id)
 );
 
 /* tipos_clientes es la tabla que contendrá información sobre los diferentes tipos de clientes y un descuento que se puede aplicar.
- por ejemplo si el cliente es un cliente UBER - DIDI - DELIBERY Y se le aplica un descuento. */
+ por ejemplo si el cliente es un cliente UBER - DIDI - DELIBERY - MECANICO Y se le aplica un descuento. */
 
 create table tipos_clientes(
-   id int primary key auto_increment,
-   descripcion varchar(255) not null,
+   id int primary key bigserial,
+   nombre varchar(255) not null,
    estado boolean not null default true,
    descuento int not null default 0
+);
+
+/* genero es la tabla que contiene la información sobre los diferentes tipos de genero que existen */
+
+create table genero (
+   id int primary key bigserial,
+   nombre varchar(255) not null
 );
 
 /* fecha nacimiento se almacena para la posibilidad de enviar mensajes de cumpleaños a los clientes
  para aplicar bonificaciones en cumpleaños. */
 
 create table clientes (
- id int primary key auto_increment,
+ id int primary key bigserial,
  nombre varchar(255) not null,
  apellido varchar(255) not null,
  email varchar(255) not null,
@@ -67,7 +81,8 @@ create table clientes (
  direccion varchar(255),
  estado boolean not null default true,
  fecha_nacimiento date not null,
- fecha_registro date not null default current_date(),
+ genero_id int not null,
+ foreign key(genero_id) references generos(id),
  tipo_cliente_id int not null,
  foreign key(tipo_cliente_id) references tipos_clientes(id)
 );
@@ -75,7 +90,7 @@ create table clientes (
 /* tabla de configuración para almacenar las diferentes formas de pago que se utilizan en el local. */
 
 create table condicion_pago(
- id int primary key auto_increment,
+ id int primary key bigserial,
  descripcion varchar(255) not null,
  estado boolean not null default true
 );
@@ -84,7 +99,7 @@ create table condicion_pago(
 el mismo se relaciona al cliente, usuario. */
 
 create table ventas(
- id int primary key auto_increment,
+ id int primary key bigserial,
  cliente_id int null,
  fecha date not null default current_date(),
  hora time not null default current_time(),
@@ -96,7 +111,7 @@ create table ventas(
 /* Se almacena los articulos asociados a una venta. */
 
 create table ventas_detalle(
- id int primary key auto_increment,
+ id int primary key bigserial,
  venta_id int not null,
  producto_id int not null,
  cantidad int not null,
@@ -108,7 +123,7 @@ foreign key(producto_id) references productos(id)
 /* Se almacena las condiciones de pago que aplican a cada venta.*/
 
 create table ventas_condicion_pago(
- id int primary key auto_increment,
+ id int primary key bigserial,
  venta_id int not null,
  condicion_pago_id int not null,
  importe decimal(10,2) not null,
