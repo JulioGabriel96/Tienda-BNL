@@ -5,38 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoCliente extends Model
+class Genero extends Model
 {
     use HasFactory;
 
-    protected $table = 'tipo_clientes';
+    protected $table = 'generos';
 
     protected $fillable = [
         'nombre',
-        'estado',
-        'descuento',
     ];
 
-    protected $casts = [
-        'estado' => 'boolean',
-        'descuento' => 'integer',
-    ];
-
+    // 1 genero puede tener muchos clientes
     public function clientes()
     {
         return $this->hasMany(Cliente::class);
     }
 
-    public function scopeBuscar($query, array $filtros)
+     public function scopeBuscar($query, array $filtros)
     {
         if (! empty($filtros['nombre'])) {
             $query->where('nombre', 'like', '%'.$filtros['nombre'].'%');
         }
- 
-        if (isset($filtros['estado']) && $filtros['estado'] !== '') {
-            $query->where('estado', $filtros['estado']);
-        }
-
+        
         return $query;
     }
+    
 }

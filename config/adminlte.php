@@ -336,10 +336,17 @@ return [
             'text' => 'Gestión de Clientes',
             'icon' => 'fas fa-folder',
             'submenu' => [
+                
                 [
                     'text' => 'Tipos de clientes',
                     'route' => 'tipo-clientes.index',
-                    'icon' => 'fas fa-male',
+                    'icon' => 'fas fa-user-tag',
+                ],
+
+                [
+                    'text' => 'Géneros',
+                    'route' => 'generos.index',
+                    'icon' => 'fas fa-venus-mars',
                 ],
 
                 [

@@ -4,6 +4,7 @@ use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\SubCategoriaController;
 use App\Http\Controllers\TipoClienteController;
+use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +34,7 @@ Route::get('categorias/{categoria}/subcategorias', [SubCategoriaController::clas
 Route::post('categorias/{categoria}/subcategorias', [SubCategoriaController::class, 'store'])
     ->name('subcategorias.store');
 Route::resource('productos', ProductoController::class);
-Route::resource('tipo-clientes', TipoClienteController::class)
-    ->parameters(['tipo-clientes' => 'tipoCliente']);
-
+Route::resource('tipo-clientes', TipoClienteController::class)->parameters(['tipo-clientes' => 'tipoCliente']);
+Route::resource('generos', GeneroController::class);
 Route::resource('clientes', ClienteController::class);
 

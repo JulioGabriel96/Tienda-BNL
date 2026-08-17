@@ -14,7 +14,7 @@ class StoreTipoClienteRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
+        return [ 
             'nombre' => ['required', 'string', 'max:255', Rule::unique('tipo_clientes', 'nombre')],
             'descuento' => ['required', 'integer', 'min:0', 'max:100'],
             'estado' => ['nullable', 'integer', 'in:0,1'],
