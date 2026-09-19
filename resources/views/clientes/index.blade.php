@@ -127,7 +127,7 @@
                                 <td> 
                                     <span class="badge {{ $cliente->estado ? 'badge-success' : 'badge-secondary' }}">
                                         {{ $cliente->estado ? 'Activo' : 'Inactivo' }}
-                                    </span>
+                                    </span> 
                                 </td>
                                 <td class="text-center text-nowrap">
                                     <a href="{{ route('clientes.show', $cliente) }}"
