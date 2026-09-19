@@ -85,6 +85,7 @@ class EliminacionAsociacionesTest extends TestCase
 
     public function test_no_elimina_un_tipo_de_cliente_asociado_a_clientes(): void
     {
+        Schema::dropIfExists('clientes');
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tipo_cliente_id');

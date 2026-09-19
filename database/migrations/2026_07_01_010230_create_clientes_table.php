@@ -23,10 +23,9 @@ return new class extends Migration
             $table->unsignedBigInteger('tipo_cliente_id');
             $table->foreign('tipo_cliente_id')->references('id')->on('tipo_clientes');
             $table->unsignedBigInteger('genero_id');
-            $table->foreign('genero_id')->references('id')->on('generos');
             $table->timestamps();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.
