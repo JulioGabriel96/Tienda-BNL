@@ -14,7 +14,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class ProductoController extends Controller
 {
     public function index(Request $request)
-    {
+    { 
         $filtros = $request->only(['buscar', 'marca_id', 'categoria_id', 'estado']);
         $productos = Producto::query()
             ->with(['marca', 'subcategoria.categoria'])
