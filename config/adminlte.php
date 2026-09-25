@@ -316,6 +316,11 @@ return [
             'icon' => 'fas fa-folder',
             'submenu' => [
                 [
+                    'text' => 'Marcas Vehículos',
+                    'route' => 'marcas-vehiculos.index',
+                    'icon' => 'fas fa-tags',
+                ],
+                [
                     'text' => 'Marcas',
                     'route' => 'marcas.index',
                     'icon' => 'fas fa-tags',
