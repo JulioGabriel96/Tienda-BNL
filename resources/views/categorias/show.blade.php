@@ -89,7 +89,7 @@
 
         <!-- Acciones Card -->
         <div class="card border-danger">
-            <div class="card-header bg-danger bg-opacity-10 border-danger">
+            <div class="card-header border-danger">
                 <h5 class="mb-0 text-danger"><i class="bi bi-exclamation-triangle"></i> Zona de Peligro</h5>
             </div>
             <div class="card-body">
@@ -117,13 +117,8 @@
         font-size: 0.9rem;
     }
 
-    .bg-opacity-10 {
-        opacity: 0.1;
-    }
-
     .border-danger {
         border: 2px solid #ef4444;
     }
 </style>
 @endsection
-

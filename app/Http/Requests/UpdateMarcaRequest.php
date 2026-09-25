@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 class UpdateMarcaRequest extends FormRequest
 {
     public function authorize(): bool
-    {
+    { 
         return true; 
     }
 
