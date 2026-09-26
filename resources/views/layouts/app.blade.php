@@ -44,38 +44,10 @@
 @section('footer')
     <strong>&copy; 2026 Tienda BNL.</strong> Todos los derechos reservados.
 @stop
-
 @section('css')
-    <style>
-        .page-header {
-            background: #ffffff;
-            border-radius: 0.25rem;
-            border-top: 3px solid #007bff;
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
-            margin-bottom: 1rem;
-            padding: 1.25rem;
-        }
-
-        .page-header h1 {
-            color: #343a40;
-            font-size: 1.6rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .page-header p {
-            color: #6c757d;
-            margin-bottom: 0;
-        }
-
-        .gap-2 {
-            gap: 0.5rem;
-        }
-
-        .app-alert {
-            margin-top: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/index-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-generico.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-form.css') }}">
     @stack('styles')
 @stop
 
