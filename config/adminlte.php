@@ -320,6 +320,13 @@ return [
                     'route' => 'marcas-vehiculos.index',
                     'icon' => 'fas fa-tags',
                 ],
+
+                [
+                    'text' => 'Modelos Vehículos',
+                    'route' => 'modelos-vehiculos.index',
+                    'icon' => 'fas fa-tags',
+                ],
+
                 [
                     'text' => 'Marcas',
                     'route' => 'marcas.index',

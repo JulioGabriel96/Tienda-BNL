@@ -8,6 +8,7 @@ use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaVehiculosController;
+use App\Http\Controllers\ModeloVehiculosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::get('/', function () {
 
 Route::resource('marcas', MarcaController::class);
 Route::resource('marcas-vehiculos', MarcaVehiculosController::class)->parameters(['marcas-vehiculos' => 'marcaVehiculo']);
+Route::resource('modelos-vehiculos', ModeloVehiculosController::class)->parameters(['modelos-vehiculos' => 'modeloVehiculo']);
 Route::resource('categorias', CategoriaController::class);
 Route::resource('subcategorias', SubCategoriaController::class);
 Route::get('categorias/{categoria}/subcategorias/create', [SubCategoriaController::class, 'create'])
