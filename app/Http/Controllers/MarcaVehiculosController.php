@@ -14,7 +14,7 @@ class MarcaVehiculosController extends Controller
     public function index(Request $request)
     {
         $filtros = $request->only(['nombre']);
-        $marcasVehiculo = MarcaVehiculo::buscar($filtros)->latest()
+        $marcasVehiculo = MarcaVehiculo::buscar($filtros)->withCount('marcas_modelos')->latest()
             ->paginate(5)->withQueryString();
 
         return view('marcas-vehiculos.index', compact('marcasVehiculo'));

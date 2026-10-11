@@ -2,7 +2,7 @@
 
 @section('title', 'Subcategorias de ' . $categoria->nombre)
 
-@section('app_content')
+@section('app_content') 
 <div class="row pt-3">
     <div class="col-lg-12">
         <div class="card">

@@ -24,5 +24,9 @@ class MarcaVehiculo extends Model
         return $query;
     }
     
+    public function marcas_modelos()
+    {
+        return $this->hasMany(MarcaModelo::class, 'marca_id');
+    }
 
 }
