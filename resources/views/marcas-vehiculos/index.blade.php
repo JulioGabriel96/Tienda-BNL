@@ -57,6 +57,7 @@
                     <thead>
                         <tr class="table-light">
                             <th><i class="bi bi-tag"></i> Nombre</th>
+                            <th><i class="bi bi-tag"></i> Modelos</th>
                             <th class="text-center"><i class="bi bi-gear"></i> Acciones</th>
                         </tr>
                     </thead>
@@ -65,6 +66,13 @@
                             <tr>
                                 <td>
                                     <strong>{{ $marca->nombre }}</strong>
+                                </td>
+                                <td>  
+                                    {{ $marca->marcas_modelos_count }}
+                                    <a href="{{ route('marcas-modelos.index', $marca->id) }}"
+                                        class="btn btn-outline-info btn-sm" title="Ver detalles">
+                                        <i class="fas fa-eye"></i> 
+                                    </a>
                                 </td>
                                 <td class="text-center">
                                     <div class="action-buttons">
@@ -121,3 +129,4 @@
 
 
 @endsection
+ 

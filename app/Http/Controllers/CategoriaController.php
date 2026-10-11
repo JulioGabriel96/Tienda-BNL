@@ -11,7 +11,7 @@ use App\Models\Categoria;
 
 class CategoriaController extends Controller
 { 
-    //
+    // 
     public function index(Request $request)
     { 
         $filtros = $request->only(['nombre', 'estado']);
