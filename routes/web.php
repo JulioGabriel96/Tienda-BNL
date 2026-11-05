@@ -10,6 +10,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaVehiculosController;
 use App\Http\Controllers\ModeloVehiculosController;
 use App\Http\Controllers\MarcaModeloVehiculosController;
+use App\Http\Controllers\ModuloController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +31,7 @@ Route::get('/', function () {
 Route::resource('marcas', MarcaController::class);
 Route::resource('marcas-vehiculos', MarcaVehiculosController::class)->parameters(['marcas-vehiculos' => 'marcaVehiculo']);
 Route::resource('modelos-vehiculos', ModeloVehiculosController::class)->parameters(['modelos-vehiculos' => 'modeloVehiculo']);
-
 Route::resource('marcas-modelos', MarcaModeloVehiculosController::class)->parameters(['marcas-modelos' => 'modeloMarcaVehiculo'])->except(['create', 'index', 'store']);
-
 Route::get('marcas-vehiculos/{marcaVehiculo}/modelos/create', [MarcaModeloVehiculosController::class, 'create'])
 ->name('marcas-modelos.create');
 
@@ -54,3 +53,6 @@ Route::resource('productos', ProductoController::class);
 Route::resource('tipo-clientes', TipoClienteController::class)->parameters(['tipo-clientes' => 'tipoCliente']);
 Route::resource('generos', GeneroController::class);
 Route::resource('clientes', ClienteController::class);
+Route::resource('modulos', ModuloController::class)->except(['destroy']);
+Route::post('modulos/{modulo}/cambiarEstado', [ModuloController::class, 'cambiarEstado'])
+->name('modulos.cambiarEstado');

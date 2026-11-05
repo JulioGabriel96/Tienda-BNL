@@ -370,13 +370,23 @@ return [
             ],
         ],
 
-
-        ['header' => 'SISTEMA'],
         [
-            'text' => 'Configuracion',
-            'icon' => 'fas fa-fw fa-cog',
-            'url' => '#',
+            'text' => 'Configuración',
+            'icon' => 'fas fa-folder',
+            'submenu' => [
+                
+                [
+                    'text' => 'Modulos',
+                    'route' => 'modulos.index',
+                    'icon' => 'fas fa-cog',
+                ],
+
+               
+                
+            ],
         ],
+
+
     ],
 
     /*
